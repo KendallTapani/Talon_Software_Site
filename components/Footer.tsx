@@ -8,8 +8,7 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Talon Software</h3>
             <p className="text-sm">
-              Talon Software is not a business entity (yet). It is a personal brand
-              managed by Kendall Tapani.
+              Talon Software is not a business entity (yet). It is a personal brand.
             </p>
           </div>
           <div>
@@ -61,8 +60,7 @@ export default function Footer() {
         </div>
         <div className="border-t border-gray-800 pt-6 text-center text-sm">
           <p>
-            © {new Date().getFullYear()} Talon Software. Managed by Kendall
-            Tapani. All rights reserved.
+            © {new Date().getFullYear()} Talon Software. All rights reserved.
           </p>
         </div>
       </div>

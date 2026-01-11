@@ -74,8 +74,7 @@ export default function Home() {
                 </h2>
                 <div className="space-y-4 text-lg text-slate-700 leading-relaxed">
                   <p>
-                    Talon Software is brand ran by <strong className="text-slate-900">Kendall Tapani</strong>, 
-                    delivering professional software solutions to businesses across the United States.
+                    Talon Software delivers professional software solutions to businesses across the United States.
                   </p>
                   <p>
                     We operate multiple SaaS platforms and specialize in custom software integrations 
