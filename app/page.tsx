@@ -94,10 +94,10 @@ export default function Home() {
               <div className="absolute inset-0 bg-black/10"></div>
               <div className="relative z-10">
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                  Let's Build Something Useful
+                  Let&apos;s Build Something Useful
                 </h2>
                 <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-                  Ready to bring your ideas to life? Get in touch and let's discuss your next project.
+                  Ready to bring your ideas to life? Get in touch and let&apos;s discuss your next project.
                 </p>
                 <Link
                   href="/contact"

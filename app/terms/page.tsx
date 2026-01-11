@@ -29,7 +29,7 @@ export default function TermsPage() {
                   This website is provided for informational purposes only. You
                   may use this website for lawful purposes only and in a manner
                   that does not infringe upon the rights of others or restrict
-                  or inhibit anyone else's use and enjoyment of the website.
+                  or inhibit anyone else&apos;s use and enjoyment of the website.
                 </p>
 
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-8 mb-4">
@@ -46,7 +46,7 @@ export default function TermsPage() {
                   Disclaimer
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  The information on this website is provided on an "as is" basis.
+                  The information on this website is provided on an &quot;as is&quot; basis.
                   We make no representations or warranties of any kind, express or
                   implied, about the completeness, accuracy, reliability, or
                   suitability of the information contained on this website.
