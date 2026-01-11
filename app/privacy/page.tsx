@@ -17,10 +17,9 @@ export default function PrivacyPage() {
                   <strong>Last updated:</strong> {new Date().toLocaleDateString()}
                 </p>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  Talon Software is not a business entity. It is a personal brand
-                  managed by Kendall Tapani. This privacy policy describes how
-                  information is collected and used when you interact with this
-                  website.
+                  Talon Software is not a business entity. It is a personal brand.
+                  This privacy policy describes how information is collected and used
+                  when you interact with this website.
                 </p>
 
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-8 mb-4">

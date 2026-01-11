@@ -37,7 +37,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="https://github.com/kendalltapani"
+                  href="https://github.com/talonsoftware-llc"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
@@ -47,7 +47,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://linkedin.com/in/kendalltapani"
+                  href="https://www.linkedin.com/in/talon-software-2456043a5/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"

@@ -17,9 +17,8 @@ export default function TermsPage() {
                   <strong>Last updated:</strong> {new Date().toLocaleDateString()}
                 </p>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  Talon Software is not a business entity. It is a personal brand
-                  managed by Kendall Tapani. By accessing and using this website,
-                  you agree to be bound by these Terms of Service.
+                  Talon Software is not a business entity. It is a personal brand.
+                  By accessing and using this website, you agree to be bound by these Terms of Service.
                 </p>
 
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-8 mb-4">
@@ -37,8 +36,8 @@ export default function TermsPage() {
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
                   All content on this website, including but not limited to text,
-                  graphics, logos, and software, is the property of Kendall
-                  Tapani or its content suppliers and is protected by copyright
+                  graphics, logos, and software, is the property of Talon Software
+                  or its content suppliers and is protected by copyright
                   and other intellectual property laws.
                 </p>
 
@@ -56,7 +55,7 @@ export default function TermsPage() {
                   Limitation of Liability
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  In no event shall Kendall Tapani or Talon Software be liable
+                  In no event shall Talon Software be liable
                   for any indirect, incidental, special, consequential, or
                   punitive damages arising out of your use of this website.
                 </p>
