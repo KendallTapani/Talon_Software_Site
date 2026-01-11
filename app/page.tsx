@@ -67,7 +67,7 @@ export default function Home() {
             </div>
 
             {/* About Section */}
-            <div className="max-w-4xl mx-auto mb-16">
+            <div className="max-w-5xl mx-auto mb-16">
               <div className="bg-white rounded-3xl p-10 md:p-12 shadow-2xl border border-slate-200/50">
                 <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
                   About Talon Software
