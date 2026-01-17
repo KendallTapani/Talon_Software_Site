@@ -7,6 +7,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Talon Software",
   description: "Talon Software delivers professional software solutions to businesses across the United States. We specialize in SaaS applications, custom website features, and business software consulting.",
+  icons: {
+    icon: "/Talon Software Logo.jpg",
+    shortcut: "/Talon Software Logo.jpg",
+    apple: "/Talon Software Logo.jpg",
+  },
   openGraph: {
     title: "Talon Software",
     description: "Professional software solutions for businesses across the United States. Specializing in SaaS applications, custom website features, and business software consulting.",
