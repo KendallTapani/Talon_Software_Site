@@ -48,7 +48,7 @@ export default function Home() {
                   <span className="font-semibold relative z-10 group-hover:text-white transition-colors">GitHub</span>
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/talon-software-2456043a5/"
+                  href="https://www.linkedin.com/in/talonsoftware/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-900 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:from-blue-700 hover:to-blue-800"

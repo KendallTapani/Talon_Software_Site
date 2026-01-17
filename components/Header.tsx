@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 
 export default function Header() {
@@ -8,8 +9,15 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <Link
             href="/"
-            className="text-2xl font-bold text-blue-900 hover:text-blue-900 transition-colors"
+            className="flex items-center gap-3 text-2xl font-bold text-blue-900 hover:text-blue-900 transition-colors"
           >
+            <Image
+              src="/Talon Software Logo.jpg"
+              alt="Talon Software Logo"
+              width={40}
+              height={40}
+              className="rounded-lg object-contain"
+            />
             Talon Software
           </Link>
           <div className="flex items-center space-x-8">
