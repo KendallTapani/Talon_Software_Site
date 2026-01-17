@@ -27,7 +27,7 @@ export default function Home() {
               {/* Social Links */}
               <div className="flex justify-center items-center gap-4 mb-16">
                 <a
-                  href="https://github.com/talonsoftware-llc"
+                  href="https://github./talonsoftware-llc"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative inline-flex items-center px-8 py-4 bg-white text-slate-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-200"
@@ -66,23 +66,85 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Services Section */}
+            <div className="max-w-6xl mx-auto mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-800 text-center mb-12">
+                Our Services
+              </h2>
+              <div className="grid md:grid-cols-3 gap-8">
+                {/* Service 1: Business Software Consulting */}
+                <Link href="/contact?service=consulting" className="block">
+                  <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer h-full">
+                    <div className="mb-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-blue-700 to-slate-700 rounded-2xl flex items-center justify-center mb-4">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-slate-800 mb-3">
+                        Business Software Consulting & Integrations
+                      </h3>
+                      <p className="text-slate-600 leading-relaxed">
+                        Expert guidance on software strategy and seamless integrations. We help connect your systems, streamline workflows, and optimize your business processes for maximum efficiency.
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Service 2: Custom Website Features */}
+                <Link href="/contact?service=website" className="block">
+                  <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer h-full">
+                    <div className="mb-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-slate-600 to-slate-800 rounded-2xl flex items-center justify-center mb-4">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-slate-800 mb-3">
+                        Custom Website Features
+                      </h3>
+                      <p className="text-slate-600 leading-relaxed">
+                        Enhance your website with custom functionality and features. We develop tailored solutions that integrate seamlessly with your existing platform and improve user experience.
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Service 3: SaaS Applications */}
+                <Link href="/contact?service=saas" className="block">
+                  <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer h-full">
+                    <div className="mb-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center mb-4">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-slate-800 mb-3">
+                        Developing SaaS Applications
+                      </h3>
+                      <p className="text-slate-600 leading-relaxed">
+                        Build scalable, cloud-based software solutions tailored to your business needs. From concept to deployment, we create robust SaaS platforms that grow with your company.
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
             {/* About Section */}
             <div className="max-w-5xl mx-auto mb-16">
               <div className="bg-white rounded-3xl p-10 md:p-12 shadow-2xl border border-slate-200/50">
                 <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-                  About Talon Software
+                  About
                 </h2>
                 <div className="space-y-4 text-lg text-slate-700 leading-relaxed">
                   <p>
-                    Talon Software delivers professional software solutions to businesses across the United States.
+                    Talon Software was founded in Vancouver Washington by <span className="font-semibold text-slate-900">Kendall Tapani</span>, delivering professional software solutions to businesses across the United States.
                   </p>
                   <p>
-                    We operate multiple SaaS platforms and specialize in custom software integrations 
-                    and website features for a variety of businesses nationwide.
-                  </p>
-                  <p className="text-slate-600">
-                    From software integrations to scalable web applications, we provide the technical 
-                    expertise and reliable solutions your business needs to thrive in the digital landscape.
+                    We currently operate multiple SaaS platforms and specialize in custom software integrations 
+                    and website buildouts for a variety of businesses nationwide. We provide all the technical 
+                    expertise and solutions your business needs to thrive in the digital landscape.
                   </p>
                 </div>
               </div>

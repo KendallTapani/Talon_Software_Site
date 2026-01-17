@@ -8,7 +8,28 @@ interface FormData {
   message: string;
 }
 
-export default function ContactForm() {
+interface ContactFormProps {
+  selectedService?: string | null;
+}
+
+const serviceInfo: Record<string, { name: string; placeholder: string }> = {
+  consulting: {
+    name: "Business Software Consulting & Integrations",
+    placeholder: "Tell us about your current software systems, integration needs, and what challenges you're facing. We'd love to help optimize your business processes...",
+  },
+  website: {
+    name: "Custom Website Features",
+    placeholder: "Describe the website features you need. What functionality are you looking to add? What's your current platform? Let's discuss how we can enhance your site...",
+  },
+  saas: {
+    name: "Developing SaaS Applications",
+    placeholder: "Tell us about your SaaS idea. What problem does it solve? What features are essential? We'll help you build a scalable solution from concept to deployment...",
+  },
+};
+
+export default function ContactForm({ selectedService }: ContactFormProps) {
+  const service = selectedService ? serviceInfo[selectedService] : null;
+  
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -70,6 +91,17 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {service && (
+        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+          <p className="text-sm font-medium text-blue-900 dark:text-blue-300 mb-1">
+            Interested in:
+          </p>
+          <p className="text-lg font-semibold text-blue-800 dark:text-blue-200">
+            {service.name}
+          </p>
+        </div>
+      )}
+      
       <div>
         <label
           htmlFor="name"
@@ -123,7 +155,7 @@ export default function ContactForm() {
           required
           rows={6}
           className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white resize-none"
-          placeholder="Your message..."
+          placeholder={service?.placeholder || "Your message..."}
         />
       </div>
 
