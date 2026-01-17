@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 import sgMail from "@sendgrid/mail";
 
-if (!process.env.SENDGRID_API_KEY) {
+// Only log warning in development, not in production
+if (!process.env.SENDGRID_API_KEY && process.env.NODE_ENV !== "production") {
   console.warn("SENDGRID_API_KEY is not set");
 }
 
@@ -13,10 +14,10 @@ if (process.env.SENDGRID_API_KEY) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { name, email, phone, message } = body;
 
     // Validate input
-    if (!name || !email || !message) {
+    if (!name || !email || !phone || !message) {
       return NextResponse.json(
         { error: "All fields are required" },
         { status: 400 }
@@ -32,9 +33,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate phone format (basic validation - allows various formats)
+    const phoneRegex = /^[\d\s\(\)\-\+\.]+$/;
+    if (!phoneRegex.test(phone) || phone.replace(/\D/g, '').length < 10) {
+      return NextResponse.json(
+        { error: "Invalid phone number format" },
+        { status: 400 }
+      );
+    }
+
     // Check if SendGrid is configured
     if (!process.env.SENDGRID_API_KEY) {
-      console.error("SENDGRID_API_KEY is not configured");
+      // Don't log in production to avoid exposing configuration state
+      if (process.env.NODE_ENV !== "production") {
+        console.error("SENDGRID_API_KEY is not configured");
+      }
       return NextResponse.json(
         { error: "Email service is not configured" },
         { status: 500 }
@@ -50,14 +63,15 @@ export async function POST(request: NextRequest) {
       from: process.env.SENDGRID_FROM_EMAIL || "noreply@talonsoftware.com",
       replyTo: email,
       subject: `Contact Form Submission from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #333;">New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Name:</strong> ${name.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+          <p><strong>Email:</strong> ${email.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+          <p><strong>Phone:</strong> ${phone.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
           <h3 style="color: #333; margin-top: 20px;">Message:</h3>
-          <p style="white-space: pre-wrap;">${message}</p>
+          <p style="white-space: pre-wrap;">${message.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
         </div>
       `,
     };
@@ -69,8 +83,44 @@ export async function POST(request: NextRequest) {
       { message: "Email sent successfully" },
       { status: 200 }
     );
-  } catch (error) {
-    console.error("Error sending email:", error);
+  } catch (error: any) {
+    // Log error without exposing sensitive data
+    const errorMessage = error?.message || "Unknown error";
+    console.error("Error sending email:", errorMessage);
+    
+    // Provide more specific error messages without leaking sensitive data
+    if (error.response) {
+      const errorBody = error.response.body;
+      
+      // Check for domain authentication errors
+      if (errorBody?.errors) {
+        const firstError = errorBody.errors[0];
+        const errorMsg = firstError?.message || "";
+        
+        if (errorMsg.includes("domain") || errorMsg.includes("authenticated")) {
+          return NextResponse.json(
+            { error: "Domain authentication issue. Please ensure your sender email is from a verified domain in SendGrid." },
+            { status: 500 }
+          );
+        }
+        
+        // Only return safe error messages (no API keys or sensitive data)
+        const safeErrorMessage = errorMsg.includes("API") || errorMsg.includes("key") 
+          ? "Failed to send email. Please check your SendGrid configuration."
+          : errorMsg;
+        
+        return NextResponse.json(
+          { error: safeErrorMessage || "Failed to send email. Please check your SendGrid configuration." },
+          { status: 500 }
+        );
+      }
+      
+      return NextResponse.json(
+        { error: "Failed to send email. Please check your SendGrid configuration." },
+        { status: 500 }
+      );
+    }
+    
     return NextResponse.json(
       { error: "Failed to send email. Please try again later." },
       { status: 500 }

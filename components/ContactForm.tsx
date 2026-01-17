@@ -5,6 +5,7 @@ import { useState, FormEvent } from "react";
 interface FormData {
   name: string;
   email: string;
+  phone: string;
   message: string;
 }
 
@@ -33,6 +34,7 @@ export default function ContactForm({ selectedService }: ContactFormProps) {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
+    phone: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -72,7 +74,7 @@ export default function ContactForm({ selectedService }: ContactFormProps) {
           type: "success",
           message: "Thank you! Your message has been sent successfully.",
         });
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", message: "" });
       } else {
         setSubmitStatus({
           type: "error",
@@ -137,6 +139,25 @@ export default function ContactForm({ selectedService }: ContactFormProps) {
           required
           className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
           placeholder="your.email@example.com"
+        />
+      </div>
+
+      <div>
+        <label
+          htmlFor="phone"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+        >
+          Phone Number
+        </label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          required
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+          placeholder="(555) 123-4567"
         />
       </div>
 
