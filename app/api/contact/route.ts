@@ -83,46 +83,62 @@ export async function POST(request: NextRequest) {
       { message: "Email sent successfully" },
       { status: 200 }
     );
-  } catch (error: any) {
-    // Log error without exposing sensitive data
-    const errorMessage = error?.message || "Unknown error";
+  } catch (error: unknown) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
     console.error("Error sending email:", errorMessage);
-    
-    // Provide more specific error messages without leaking sensitive data
-    if (error.response) {
-      const errorBody = error.response.body;
-      
-      // Check for domain authentication errors
-      if (errorBody?.errors) {
-        const firstError = errorBody.errors[0];
-        const errorMsg = firstError?.message || "";
-        
-        if (errorMsg.includes("domain") || errorMsg.includes("authenticated")) {
-          return NextResponse.json(
-            { error: "Domain authentication issue. Please ensure your sender email is from a verified domain in SendGrid." },
-            { status: 500 }
-          );
-        }
-        
-        // Only return safe error messages (no API keys or sensitive data)
-        const safeErrorMessage = errorMsg.includes("API") || errorMsg.includes("key") 
-          ? "Failed to send email. Please check your SendGrid configuration."
-          : errorMsg;
-        
-        return NextResponse.json(
-          { error: safeErrorMessage || "Failed to send email. Please check your SendGrid configuration." },
-          { status: 500 }
-        );
-      }
-      
+
+    if (!error || typeof error !== "object" || !("response" in error)) {
       return NextResponse.json(
-        { error: "Failed to send email. Please check your SendGrid configuration." },
+        { error: "Failed to send email. Please try again later." },
         { status: 500 }
       );
     }
-    
+
+    const { response } = error as {
+      response?: { body?: { errors?: Array<{ message?: string }> } };
+    };
+
+    if (!response) {
+      return NextResponse.json(
+        { error: "Failed to send email. Please try again later." },
+        { status: 500 }
+      );
+    }
+
+    const errorBody = response.body;
+
+    if (errorBody?.errors) {
+      const firstError = errorBody.errors[0];
+      const errorMsg = firstError?.message || "";
+
+      if (errorMsg.includes("domain") || errorMsg.includes("authenticated")) {
+        return NextResponse.json(
+          {
+            error:
+              "Domain authentication issue. Please ensure your sender email is from a verified domain in SendGrid.",
+          },
+          { status: 500 }
+        );
+      }
+
+      const safeErrorMessage =
+        errorMsg.includes("API") || errorMsg.includes("key")
+          ? "Failed to send email. Please check your SendGrid configuration."
+          : errorMsg;
+
+      return NextResponse.json(
+        {
+          error:
+            safeErrorMessage ||
+            "Failed to send email. Please check your SendGrid configuration.",
+        },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { error: "Failed to send email. Please try again later." },
+      { error: "Failed to send email. Please check your SendGrid configuration." },
       { status: 500 }
     );
   }
